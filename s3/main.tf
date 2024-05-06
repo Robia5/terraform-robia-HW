@@ -14,7 +14,25 @@ resource "aws_s3_bucket_website_configuration" "website" {
   error_document {
     key = "error.html"
   }
+}
+# resource "aws_s3_bucket_versioning" "versioning" {
+#   bucket = aws_s3_bucket.static_website_bucket.id
 
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
+
+# resource "aws_s3_bucket_object_lock_configuration" "example" {
+#   bucket = aws_s3_bucket.static_website_bucket.id
+
+#   rule {
+#     default_retention {
+#       mode = "COMPLIANCE"
+#       days = 5
+#     }
+#   }
+# }
 #   routing_rule {
 #     condition {
 #       key_prefix_equals = "docs/"
@@ -23,7 +41,7 @@ resource "aws_s3_bucket_website_configuration" "website" {
 #       replace_key_prefix_with = "documents/"
 #     }
 #   }
-}
+
 resource "aws_s3_bucket_policy" "static_website_policy" {
   bucket = aws_s3_bucket.static_website_bucket.id
 
